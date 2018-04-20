@@ -20,7 +20,7 @@ class AccountTest(unittest.TestCase):
         self.assertEqual(self.new_account.username,"MbuguaM")
         self.assertEqual(self.new_account.password,"")
     
-    def text_saveAccount(self):
+    def test_saveAccount(self):
         """ confirming if the account has been saved """
         self.new_account.saveAccount()
         self.assertEqual(len(Account.accounts_list),1)
@@ -28,32 +28,41 @@ class AccountTest(unittest.TestCase):
     def test_check_Account_Exists(self):
         """ confirms that the given account exists """
         self.new_account.saveAccount()
-        test_account=Account("facebook","Mbout","")
-        test_account.saveAccount()
-        
-        foundAccount= Account.check_Account_Exists("facebook")
+        # trial_account = Account("Facebook","Mbout","None")
+        trial_account = Account("Facebook","MbuguaM","")
+        # trial_account.saveAccount()
+        trial_account.saveAccount()
+
+        foundAccount= Account.check_Account_Exists("Twitter")
         self.assertTrue(foundAccount)
 
     
-    def test_findAccount(self):
+    def test_find_Account(self):
         """ find the account and returns it """
         self.new_account.saveAccount()
         test_account=Account("facebook","Mbout","")
         test_account.saveAccount()
         
-        foundAccount=Account.findAccount("facebook")
-        self.assertEqual(foundAccount, test_account.application)
+        foundAccount=Account.find_Account("facebook")
+        self.assertEqual(foundAccount, test_account)
 
     def test_gen_lng_password(self):
         """ checking if the password has been created """
-        lng_password= Account.gen_lng_password("MbuguaM","facebook")
+        self.new_account.saveAccount()
+        test_account=Account("facebook","Mbout","")
+        test_account.saveAccount()
+        Account.gen_lng_password("Mbout")
      
-        self.assertTrue(len(lng_password),8)
+        self.assertTrue(len(test_account.password),16)
+
     def test_gen_shrt_password(self):
         """ checking if the short password has been created """
-
-        shrt_password=Account.gen_shrt_password("MbuguaM")
-        self.assertTrue(len(shrt_password),4)
+        
+        self.new_account.saveAccount()
+        test_account=Account("facebook","Mbout","")
+        test_account.saveAccount()
+        Account.gen_shrt_password("MbuguaM")
+        self.assertTrue(len(self.new_account.password),4)
 
 if __name__ == "__main__":
     unittest.main()   

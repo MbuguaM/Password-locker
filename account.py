@@ -25,7 +25,7 @@ class Account:
                 return False
 
     @classmethod
-    def findAccount(cls,application):
+    def find_Account(cls,application):
         """ finding the account and returning it """
 
         for account in cls.accounts_list:
@@ -33,20 +33,22 @@ class Account:
                 return account
    
     @classmethod
-    def gen_lng_password(cls,username,application):
+    def gen_lng_password(cls,username):
         for account in cls.accounts_list:
-            user=account.username[0:3]
-            acct=account.application[0:3]
-            symbol=["@","#","%","*","~","!","$","£"]
-            number=["1","2","3","4","5","6", "7","8","9"]
-            lng_password=(choice(symbol) + acct + choice(number) + user) 
-            return lng_password
+            if account.username == username:
+                user=account.username[0:3]
+                acct=account.application[0:3]
+                symbol=["@","#","%","*","~","!","$","£"]
+                number=["1","2","3","4","5","6", "7","8","9"]
+                lng_password=(choice(symbol) + acct + choice(number) + user + choice(symbol) + acct + choice(number) + user) 
+                account.password = lng_password
     
     @classmethod
     def gen_shrt_password(cls,username):
         for account in cls.accounts_list:
-            user=account.username[0:3]
-            symbol=["@","#","%","*","~","!","$","£"]
-            shrt_password=(choice(symbol) + user)
-            return shrt_password 
+            if account.username == username:
+                user=account.username[0:3]
+                symbol=["@","#","%","*","~","!","$","£"]
+                shrt_password=(choice(symbol) + user)
+                account.password = shrt_password
     
