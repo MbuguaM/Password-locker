@@ -33,6 +33,24 @@ class Account:
                 return account
    
     @classmethod
+    def list_all_accounts(cls):
+        """ function that return all the accounts """
+        for account in cls.accounts_list:
+            print(account.application)
+            print(account.username)
+            print(account.password)
+            print("-"*20)
+    
+    @classmethod
+    def delete_account(cls,application):
+        """ function that deletes a  given account """
+        for account in cls.accounts_list:
+            if account.application == application:
+                cls.accounts_list.remove(account)
+            else:
+                return "account for %s doesn't exist"%(application)
+
+    @classmethod
     def gen_lng_password(cls,username):
         for account in cls.accounts_list:
             if account.username == username:
