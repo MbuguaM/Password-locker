@@ -14,18 +14,23 @@ def create_accounts():
 print(create_accounts())
 def gen_lng_password():
     for account in accounts_list:
-        user=account.username[0:3]
-        acct=account.application[0:3]
-        symbol=["@","#","%","*","~","!","$","£"]
-        number=["1","2","3","4","5","6", "7","8","9"]
-        lng_password=(choice(symbol) + acct + choice(number) + user + choice(symbol) + acct + choice(number) + user) 
-        account.password = lng_password
+        if account.username == username:
+            user=account.username[0:3]
+            acct=account.application[0:3]
+            symbol=["@","#","%","*","~","!","$","£"]
+            number=["1","2","3","4","5","6", "7","8","9"]
+            lng_password=(choice(symbol) + acct + choice(number) + user + choice(symbol) + acct + choice(number) + user) 
+            account.password = lng_password
+       
 
-gen_lng_password()
+gen_lng_password("thrift")
 
 def shown():
     for account in accounts_list:
-        print(account.password)
-        print(len(account.password))
+        if account.username == "thrift":
+            print(account.password)
+            print(len(account.password))
+        else:
+            break
 
 shown()

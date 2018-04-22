@@ -2,15 +2,15 @@ from users  import User
 from account import Account 
 import pyperclip
 
-def create_user(fullName,email,username,password):
+def create_user(fullName,email,username):
     """ creating a new user """
-    newUser= User(fullName,email,username,password)
+    newUser= User(fullName,email,username,"")
 
     return newUser
 
 def saveUser(newUser):
     """ saving the created user """
-    newUser.savUser()
+    newUser.saveUser()
 
 def User_exists(username):
     """ checking if the user has been added """
@@ -43,10 +43,10 @@ def main():
 
             print("Username.....")
             username = input()
-
-            print("Password.....")
-            password = input()
-            new = create_user(fullname, email, username, password)
+            
+            print(".....")
+            username = input()
+            new = create_user(fullname, email, username)
             saveUser(new)
             print('\n')
             print("Welcome %s, your account has sucessfully been created" %(username))
