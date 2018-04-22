@@ -63,6 +63,15 @@ class AccountTest(unittest.TestCase):
         test_account.saveAccount()
         Account.gen_shrt_password("MbuguaM")
         self.assertTrue(len(self.new_account.password),4)
-
+    
+    def test_deleted_account(self):
+        """checking is funtion deletes a given account"""
+        self.new_account.saveAccount()
+        test_account=Account("facebook","Mbout","")
+        test_account.saveAccount()
+        
+        self.assertEqual(len(Account.accounts_list),2)
+        Account.delete_account("Twitter")
+        self.assertEqual(len(Account.accounts_list),1)
 if __name__ == "__main__":
     unittest.main()   
